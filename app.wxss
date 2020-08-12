@@ -1,0 +1,22 @@
+@import './styles/iconfont.wxss';
+
+page, view, text, swiper, swiper-item, image, navigator {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+page {
+    /* 主题颜色 */
+    --themeColor: #f8554d;
+    /* 统一字体大小
+    假设设计稿大小为 375 px
+    所以 1px = 2rpm
+    */
+    font-size: 28rpx;
+}
+
+image {
+    width: 100%;
+    height: 100%;
+}

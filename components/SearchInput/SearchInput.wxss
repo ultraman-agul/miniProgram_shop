@@ -1,0 +1,16 @@
+/**index.wxss**/
+.Search-vi {
+  height: 90rpx;
+  width: 100%;
+  background-color: var(--themeColor);
+  padding: 10rpx;
+}
+.Search-vi navigator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 10rpx;
+  background-color: #fff;
+  color: #666;
+}

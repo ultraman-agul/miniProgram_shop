@@ -1,0 +1,43 @@
+.cate .container {
+  height: calc(100vh - 90rpx);
+  display: flex;
+}
+.cate .container .leftMenu {
+  flex: 2;
+}
+.cate .container .leftMenu .left-item {
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+}
+.cate .container .leftMenu .isActive {
+  color: var(--themeColor);
+  border-left: 5rpx solid currentColor;
+}
+.cate .container .rightContent {
+  flex: 5;
+}
+.cate .container .rightContent .goods-group .goods-title {
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cate .container .rightContent .goods-group .goods-title .delimiter {
+  color: #ccc;
+  padding: 0 10rpx;
+}
+.cate .container .rightContent .goods-group .goods-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cate .container .rightContent .goods-group .goods-list navigator {
+  width: 33.33%;
+  text-align: center;
+  padding-bottom: 20rpx;
+}
+.cate .container .rightContent .goods-group .goods-list navigator image {
+  width: 50%;
+}
