@@ -1,39 +1,42 @@
 // pages/cart/cart.js
+import { getSetting, chooseAddress, openSetting } from '../../utils/asyncWx.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    // 地址信息
+    address: {},
+    // 购物车数据
+    cart: [],
+    // 是否全部选中
+    allChecked: false,
+    // 总价格
+    totalPrice: 0,
+    // 总数量
+    totalNum: 0
   },
-  handleAddress() {
-    // console.log("asfs")
-    // 获取用户收货地址
-    wx.getSetting({
-      success: (result)=>{
-        // 获取用户是否授权, 授权或未授权都可直接获取用户地址,只有取消授权才不可以
-        const scopeAddress = result.authSetting["scope.address"]
-        if(scopeAddress===true || scopeAddress === undefined) {
-          wx.chooseAddress({
-            success: (result1)=>{
-              console.log(result1)
-            }
-          });
-        }else{
-          // 用户拒绝过授权,带领用户前往授权
-          wx.openSetting({
-            success: (result2)=>{
-              wx.chooseAddress({
-                success: (result3) => {
-                  console.log(result3)
-                }
-              })
-            }
-          });
-        }
-      }
-    });
+  
+  async handleAddress() {
+    try{ 
+       // 获取权限状态
+    const res1 = await getSetting()
+    const scopeAddress = res1.authSetting["scope.address"]
+    //判断权限状态
+    if(scopeAddress===false) {
+      // 用户拒绝过授权,带领用户前往授权
+      await openSetting()
+    }  
+    // 调用收货地址api
+    const address = await chooseAddress()
+      // 拼接完整地址
+      address.all = address.provinceName + address.cityName + address.countyName + address.detailInfo
+      // 将数据存储到本地存储中
+      wx.setStorageSync("address", address);
+    } catch(error) {
+    console.log(error)
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -53,7 +56,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 获取缓存中的收货地址数据
+    const address = wx.getStorageSync("address")
+    // 获取缓存中的购物车数据
+    const cart = wx.getStorageSync("cart") || []
+    // 判断购物车数组是否全部为选中
+    // const allChecked = cart.length ? cart.every(v=>v.checked) : false
+    let allChecked = true
+    let totalPrice = 0
+    let totalNum = 0
+    cart.forEach(v => {
+      if(v.checked){
+        totalNum += v.num
+        totalPrice += v.goods_price * v.num 
+      }else{
+        allChecked = false
+      }
+    })
+    // 判断购物车是否为空数组
+    allChecked = cart.length != 0 ? allChecked : false
+    this.setData({
+      address,
+      cart,
+      allChecked,
+      totalNum,
+      totalPrice
+    })
   },
 
   /**

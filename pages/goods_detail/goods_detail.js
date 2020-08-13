@@ -56,6 +56,7 @@ Page({
     if (index === -1) {
       // 购物车不存在,首次添加到购物车
       this.GoodsInfo.num = 1
+      this.GoodsInfo.checked = true
       cart.push(this.GoodsInfo)
     }else{
       // 存在++

@@ -1,6 +1,61 @@
 <!--添加地址-->
 <view class="revice_address">
-    <button type="primary" plain bindtap="handleAddress">
-        获取收货地址
-    </button>
+    <!--如果没有收货地址则显示按钮-->
+    <view class="address_btn" wx:if="{{!address.userName}}">
+        <button type="primary" plain bindtap="handleAddress">
+            获取收货地址
+        </button>
+    </view>
+    <!-- 有地址则显示信息 -->
+    <view wx:else class="addressInfo">
+        <view class="userInfo">
+            <view class="username">收货人:{{address.userName}}</view>
+            <view class="useraddress">{{address.all}}</view>
+        </view>
+        <view class="userPhone">{{address.telNumber}}</view>       
+    </view>
+</view>
+
+<!--购物车内容部分-->
+<view class="cart_content">
+    <view class="cart_title">
+        购物车
+    </view>
+    <view class="cart_main" wx:for="{{cart}}" wx:id="goods_id">
+        <view class="cart_ck_wrap">
+            <checkbox-group bindchange="">
+                <checkbox checked="{{item.checked}}"></checkbox>
+            </checkbox-group>
+        </view>
+        <navigator>
+            <image src="{{item.goods_small_logo}}" mode="widthFix">      
+            </image>
+        </navigator>
+        <view class="cart_info_wrap">
+            <view class="goods_name">{{item.goods_name}}
+            </view>
+            <view class="goods_params">
+                <view class="goods_price">￥{{item.goods_price}}</view>
+                <view class="cart_num_tool">
+                    <view class="num_edit">+</view>
+                    <view class="goods_num">{{item.num}}</view>
+                    <view class="num_edit">-</view>
+                </view>
+            </view>            
+        </view>
+    </view>
+</view>
+
+<!--底部功能栏-->
+<view class="footer_tools">
+    <view class="ck_warp">
+        <checkbox-group bindchange="">
+            <checkbox checked="{{allChecked}}">全选</checkbox>
+        </checkbox-group>
+    </view>
+    <view class="cart_total_price">合计:
+        <text class="total_price_text">￥{{totalPrice}}</text>
+        <view>包含运费</view>
+    </view>
+    <view class="sum">结算({{totalNum}})</view>
 </view>
