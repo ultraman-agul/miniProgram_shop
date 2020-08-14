@@ -1,6 +1,9 @@
 page {
   padding-bottom: 90rpx;
 }
+.revice_address {
+  margin-bottom: 10rpx;
+}
 .revice_address button {
   padding: 20rpx;
   margin-top: 10rpx;
@@ -15,6 +18,9 @@ page {
 .revice_address .addressInfo .userPhone {
   flex: 1;
   text-align: right;
+}
+.cart_content {
+  text-align: center;
 }
 .cart_content .cart_title {
   color: var(--themeColor);
@@ -82,6 +88,9 @@ page {
   align-items: center;
   height: 55rpx;
   width: 55rpx;
+}
+.cart_content image {
+  width: 50%;
 }
 .footer_tools {
   display: flex;

@@ -1,10 +1,5 @@
-// pages/cart/cart.js
-import { getSetting, chooseAddress, openSetting } from '../../utils/asyncWx.js'
+import { getSetting, chooseAddress, openSetting, showModal, showToast} from '../../utils/asyncWx.js'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     // 地址信息
     address: {},
@@ -17,7 +12,7 @@ Page({
     // 总数量
     totalNum: 0
   },
-  
+  // 获取用户地址
   async handleAddress() {
     try{ 
        // 获取权限状态
@@ -39,20 +34,6 @@ Page({
     }
   },
   /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
@@ -62,6 +43,31 @@ Page({
     const cart = wx.getStorageSync("cart") || []
     // 判断购物车数组是否全部为选中
     // const allChecked = cart.length ? cart.every(v=>v.checked) : false
+    this.setCart(cart)
+    this.setData({
+      address
+    })
+  },
+  // 修改选中状态
+  handleItemChange(e) {
+    // 获取商品id
+    const goods_id = e.currentTarget.dataset.id
+    // 获取cart数组
+    let {cart} = this.data
+    // 根据商品id获取索引
+    let index = cart.findIndex(v => v.goods_id === goods_id)
+    // 改变选中状态
+    cart[index].checked = !cart[index].checked
+    // 将数据设置到data和缓存中
+    this.setData({
+      cart
+    })
+    this.setCart(cart)
+    wx.setStorageSync("cart", cart)
+  },
+  // 设置购物车状态和修改底部数据
+  setCart(cart) {
+    wx.setStorageSync("cart", cart)
     let allChecked = true
     let totalPrice = 0
     let totalNum = 0
@@ -76,46 +82,52 @@ Page({
     // 判断购物车是否为空数组
     allChecked = cart.length != 0 ? allChecked : false
     this.setData({
-      address,
       cart,
       allChecked,
       totalNum,
       totalPrice
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // 全选和反选的复选框
+  allCheckChange() {
+    let {cart, allChecked} = this.data
+    allChecked = !allChecked
+    // 修改cart数组中每个项的checked和allChecked一致
+    cart.forEach(v => v.checked = allChecked)
+    this.setCart(cart)
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  // 修改商品数量
+  async handleNumEdit(e) {
+    const {operation, id} = e.currentTarget.dataset
+    // console.log(operation, id)
+    let {cart} = this.data
+    const index = cart.findIndex(v => v.goods_id === id)
+    if(cart[index].num === 1 && operation === -1) {
+      const res = await showModal({content:'您确定删除该商品吗'})
+      if (res.confirm) {
+        cart.splice(index, 1)
+        this.setCart(cart)
+      }
+    }else{
+      cart[index].num = cart[index].num + operation
+      this.setCart(cart)
+    }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 结算功能
+  async handlePay() {
+    const {address, totalNum} = this.data
+    // 没有选择收货地址
+    if(!address.userName) {
+      await showToast({content: '请选择收货地址'})
+      return ;
+    }
+    // 没有选择商品
+    if(totalNum === 0) {
+      await showToast({content: '请选择购买的商品'})
+      return ;
+    }
+    wx.navigateTo({
+      url: '/pages/pay/pay'
+    })
   }
 })

@@ -1,0 +1,109 @@
+page{
+    background-color: #ebece7;
+  .user_info_wrap{
+    position: relative;
+    height: 45vh;
+    background-color: var(--themeColor);
+    .user_img_wrap{
+        position: relative;
+        overflow: hidden;
+        .user_bg{
+            height:50vh; 
+            // 高斯模糊
+            filter: blur(10px);
+        }
+        .userinfo{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 20%;
+            .icon{
+                height: 150rpx;
+                width: 150rpx;
+                border-radius: 50%;
+            }
+            .user_name{
+                margin-top: 20rpx;
+                font-size: 32rpx;
+                color: #fff;
+            }
+        }    
+    }
+    button{
+        position: absolute;
+        top: 20%;
+        left:50%;
+        transform: translateX(-50%);
+        width: 200rpx!important;
+        color: greenyellow;
+        border-color: greenyellow;
+    }
+}
+  .user_content{
+      color: #666;
+      position: relative;
+      .user_main{
+          padding-bottom: 100rpx;
+          width: 90%;
+          position: absolute;
+          top: -40rpx;
+          left: 50%;
+          transform: translateX(-50%);
+          .user_history{
+              background-color: #fff;
+              display: flex;
+              padding: 10rpx 0;
+              navigator{
+                flex:1;
+                text-align: center;
+                .num{
+                    color: var(--themeColor);
+                }
+                .his_text{}
+              }    
+          }
+          .order_title{
+              margin-top: 20rpx;
+              background-color: #fff; 
+              padding: 20rpx;
+          }
+          .order_item{
+            margin-top: 5rpx;
+            background-color: #fff; 
+            padding: 20rpx;
+            display:flex;
+            text-align: center;
+            navigator{
+                flex: 1;
+                .iconfont{
+                    color: var(--themeColor);
+                    font-size: 42rpx;
+                }
+                .order_text{}
+            }
+          }
+          .address{
+            margin: 20rpx 0;
+            background-color: #fff; 
+            padding: 20rpx;
+          }
+          .appInfo_wrap{
+            background-color: #fff; 
+            // padding: 20rpx;
+            view{
+                border-bottom: 1px solid #ccc;
+                padding: 20rpx;
+            }
+            .contact{
+                display: flex;
+                justify-content: space-between;
+            }
+          }
+          .recommend{
+            background-color: #fff; 
+            margin-top: 20rpx;
+            padding: 20rpx;
+          }
+      }
+  }
+}
