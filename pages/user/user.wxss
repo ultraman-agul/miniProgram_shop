@@ -90,7 +90,8 @@ page .user_content .user_main .address {
 page .user_content .user_main .appInfo_wrap {
   background-color: #fff;
 }
-page .user_content .user_main .appInfo_wrap view {
+page .user_content .user_main .appInfo_wrap view,
+page .user_content .user_main .appInfo_wrap navigator {
   border-bottom: 1px solid #ccc;
   padding: 20rpx;
 }

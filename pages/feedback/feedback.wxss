@@ -1,1 +1,58 @@
-/* pages/feedback/feedback.wxss */
+page {
+  background-color: #f3f4f6;
+  color: #666;
+}
+page .main {
+  padding: 20rpx;
+}
+page .main .tips {
+  margin: 10rpx 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+page .main .tips text {
+  width: 30%;
+  background-color: #fff;
+  text-align: center;
+  margin: 10rpx;
+  padding: 10rpx 0;
+}
+page .main .content {
+  margin-top: 20rpx;
+  background-color: #fff;
+}
+page .main .content .addPic {
+  display: flex;
+  flex-wrap: wrap;
+}
+page .main .content .addPic button {
+  margin: 0 0 30rpx 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: #f3f4f6;
+  font-size: 42rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+}
+page .main .content .addPic .upimg {
+  margin-left: 20rpx;
+}
+page .main .footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+}
+page .main .footer button {
+  width: 250rpx;
+  height: 90rpx;
+  background-color: var(--themeColor);
+  margin: 0;
+  font-size: 35rpx;
+  font-weight: 400;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

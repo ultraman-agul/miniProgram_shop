@@ -1,2 +1,32 @@
-<!--pages/feedback/feedback.wxml-->
-<text>pages/feedback/feedback.wxml</text>
+<Tabs tabs="{{tabs}}" bindtabItemChange="handleTabItemChange">
+    <view class="main">
+        <view class="title">
+            问题的种类
+        </view>
+        <view class="tips">
+            <text>功能建议</text>
+            <text>购买遇到问题</text>
+            <text>性能问题</text>
+            <text>其他</text>
+        </view>
+        <view class="content">
+            <textarea placeholder="请描述一下您的问题"></textarea>
+            <view class="addPic">
+                <button>+</button>
+                <view class="upimg">
+                    <UpImg></UpImg>
+                </view>
+                <view class="upimg">
+                    <UpImg></UpImg>
+                </view>
+                <view class="upimg">
+                    <UpImg></UpImg>
+                </view>
+        </view>
+        </view>
+        <view class="footer">
+            <button type="">
+                <icon type="success_no_circle" color="white"></icon>提交</button>
+        </view>
+    </view>
+</Tabs>

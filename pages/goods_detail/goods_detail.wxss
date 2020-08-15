@@ -35,6 +35,9 @@
   align-items: center;
   border-left: 1px solid #000;
 }
+.detail .goods_name_row .goods_collect .icon-shoucang1 {
+  color: orange;
+}
 .detail .pic_title {
   font-size: 35rpx;
   color: var(--themeColor);
