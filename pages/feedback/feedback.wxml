@@ -10,22 +10,23 @@
             <text>其他</text>
         </view>
         <view class="content">
-            <textarea placeholder="请描述一下您的问题"></textarea>
+            <textarea
+            value="{{inputVal}}"
+            bindinput="handleInputVal"
+            placeholder="请描述一下您的问题"></textarea>
             <view class="addPic">
-                <button>+</button>
-                <view class="upimg">
-                    <UpImg></UpImg>
-                </view>
-                <view class="upimg">
-                    <UpImg></UpImg>
-                </view>
-                <view class="upimg">
-                    <UpImg></UpImg>
+                <button bindtap="handleAddImg">+</button>
+                <view class="upimg"
+                wx:for="{{imgList}}"
+                wx:key="*this"
+                bindtap="handleDeleteImg"
+                data-index="{{index}}">
+                    <UpImg src="{{item}}"></UpImg>
                 </view>
         </view>
         </view>
         <view class="footer">
-            <button type="">
+            <button bindtap="handleSubmit">
                 <icon type="success_no_circle" color="white"></icon>提交</button>
         </view>
     </view>

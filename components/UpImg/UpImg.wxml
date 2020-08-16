@@ -1,5 +1,5 @@
 <view class="up_img_wrap">
-    <image src="https://i.loli.net/2020/08/15/q21FH7zMLx6daKN.jpg" mode="widthFix">
+    <image src="{{src}}" mode="widthFix">
         
     </image>
     <icon type="clear" size="23" color="red">

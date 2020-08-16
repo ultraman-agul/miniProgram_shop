@@ -4,7 +4,7 @@
     <!-- 轮播图 -->
     <swiper autoplay interval="2000" indicator-dots	circular>
         <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
-            <navigator>
+            <navigator url="/pages/goods_detail/goods_detail?goods_id={{item.goods_id}}">
                 <!-- mode="widthFix" 让image标签宽高比例和图片比例一致 -->
                 <image mode="widthFix" src="{{item.image_src}}"></image>                   
             </navigator>
@@ -12,7 +12,7 @@
     </swiper>
     <!-- 分类导航 -->
     <view class="index-cate">
-        <navigator wx:for="{{cateList}}" wx:key="name">
+        <navigator wx:for="{{cateList}}" wx:key="name" url="/pages/category/category" open-type="switchTab">
             <image src="{{item.image_src}}" mode="widthFix"></image>
         </navigator>
     </view>  
@@ -25,7 +25,12 @@
             </view>
             <!-- 内容 -->           
             <view class="floor-list">
-                <navigator wx:for="{{item1.product_list}}" wx:for-item="item2"  wx:for-index="index2" wx:key="name">
+                <navigator
+                wx:for="{{item1.product_list}}"
+                wx:for-item="item2"
+                wx:for-index="index2"
+                wx:key="name"
+                url="/pages/goods_list/goods_list?query=服饰">
                     <image src="{{item2.image_src}}" mode="{{index2 === 0 ? 'widthFix' : 'scaleToFill'}}"></image>
                 </navigator>
             </view>

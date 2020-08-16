@@ -51,7 +51,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.QueryInfo.cid = options.cid
+    this.QueryInfo.cid = options.cid || ""
+    this.QueryInfo.query = options.query || ""
     this.getGoodsList()
   },
   // 获取商品列表
